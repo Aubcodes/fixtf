@@ -35,7 +35,7 @@ const Inner = styled.div`
   }
 `;
 
-const url = "https://fine-eel-tunic.cyclic.app";
+const url = "https://fine-eel-tunic.cyclic.app/api/v1";
 
 const Login = () => {
   const [email, setEmail] = React.useState("");

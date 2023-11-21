@@ -41,7 +41,7 @@ const ImageContainer = styled.label`
     object-fit: cover;
   }
 `;
-const url = "https://fine-eel-tunic.cyclic.app";
+const url = "https://fine-eel-tunic.cyclic.app/api/v1";
 
 const Profile = () => {
   const [image, setImage] = React.useState(null);
