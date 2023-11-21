@@ -41,7 +41,7 @@ const ImageContainer = styled.label`
     object-fit: cover;
   }
 `;
-const url = "http://localhost:4005/api/v1";
+const url = "https://fine-eel-tunic.cyclic.app";
 
 const Profile = () => {
   const [image, setImage] = React.useState(null);

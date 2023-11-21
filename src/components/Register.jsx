@@ -36,7 +36,7 @@ const Inner = styled.div`
   }
 `;
 
-const url = "http://localhost:4005/api/v1";
+const url = "https://fine-eel-tunic.cyclic.app";
 
 const Register = () => {
   const [clicked, setClicked] = React.useState(false);
