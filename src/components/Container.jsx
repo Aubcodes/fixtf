@@ -8,7 +8,7 @@ const Inner = styled.div`
 `;
 
 const Box = styled.div`
-  height: 600px;
+  min-height: 600px;
   width: 950px;
   display: flex;
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
@@ -16,6 +16,11 @@ const Box = styled.div`
 
   &.reverse {
     flex-direction: row-reverse;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    box-shadow: none;
   }
 `;
 
@@ -44,10 +49,20 @@ const One = styled.div`
       }
     }
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Two = styled.div`
   padding: 30px 0;
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const Container = ({ children, reverse, text, path, img }) => {

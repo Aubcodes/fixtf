@@ -1,26 +1,27 @@
 /* eslint-disable react/prop-types */
-// import React from "react";
+import { MdEmail, MdNumbers } from "react-icons/md";
+
 import Avatar from "./Avatar";
-import Button from "./Button";
 import { CiLogout } from "react-icons/ci";
 import { FaPercent } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
 import { IoHomeSharp } from "react-icons/io5";
-import { MdEmail } from "react-icons/md";
-import { MdNumbers } from "react-icons/md";
 import { PiMoney } from "react-icons/pi";
 import { TfiWallet } from "react-icons/tfi";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import userStore from "../hook/userStore";
 
-const Inner = styled.div`
-  min-height: 100vh;
-  display: flex;
+const Container = styled.div``;
+
+const Sidebar = styled.div`
+  width: 200px;
+  border-right: 1px solid #e0e0e0;
 
   ul {
     list-style-type: none;
     margin-top: 40px;
+    padding: 0 30px;
   }
 
   li {
@@ -29,46 +30,50 @@ const Inner = styled.div`
     .icon {
       margin-right: 5px;
     }
+  }
+
+  @media (max-width: 768px) {
+    /* background-color: blue; */
+    /* display: none; */
+    width: 100px;
+    ul {
+      padding: 0 10px;
+    }
 
     p {
-      font-size: 14px;
+      font-size: 11px;
     }
   }
 `;
 
-const Sidebar = styled.div`
-  width: 150px;
-  border-right: 1px solid #e0e0e0;
-  padding: 20px;
-`;
-
 const Menu = styled.div`
-  padding: 0 40px;
-  margin-top: 50px;
   width: 100%;
+  min-height: 100vh;
 `;
 
-const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  margin-top: 50px;
-  width: 500px;
-`;
-
-const Item = styled.div`
-  width: 300px;
+const Header = styled.div`
+  margin-top: 30px;
   padding: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: 100px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow */
-  margin-bottom: 20px; /* Add margin to create space between items */
-  border-radius: 4px;
 
-  p {
-    font-size: 16px;
+  @media (max-width: 600px) {
+    h2 {
+      font-size: 20px;
+    }
+  }
+  @media (max-width: 500px) {
+    margin-top: 20px;
+    padding: 10px;
+
+    h2 {
+      font-size: 16px;
+    }
+  }
+`;
+
+const Body = styled.div`
+  padding: 20px;
+  @media (max-width: 500px) {
+    padding: 10px;
   }
 `;
 
@@ -102,22 +107,75 @@ const LogOut = styled.button`
     margin-right: 5px;
   }
 
-  /* Add more styles as needed */
+  @media (max-width: 500px) {
+    width: 70px;
+    font-size: 12px;
+    padding: 5px;
+  }
 `;
 
-const Dashboard = ({ children }) => {
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+
+  @media (max-width: 500px) {
+    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+
+    p {
+      font-size: 12px;
+    }
+  }
+`;
+
+const Item = styled.div`
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  border-radius: 6px;
+  height: 90px;
+
+  .item {
+    display: flex;
+    gap: 10px;
+  }
+
+  .value {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: start;
+  }
+`;
+
+function calculatePercentageIncrease(originalValue, newValue) {
+  if (originalValue === 0) {
+    // Return 0 percentage increase when the original value is 0
+    return 0;
+  }
+
+  // Calculate percentage increase
+  const percentageIncrease =
+    ((newValue - originalValue) / Math.abs(originalValue)) * 100;
+
+  return percentageIncrease;
+}
+
+const Dashboards = ({ children }) => {
   const { user, setUser } = userStore();
 
   const navigate = useNavigate();
 
   if (children) {
     return (
-      <Inner>
+      <Container className="flex">
         <Sidebar>
           <div className="center">
             <Avatar />
           </div>
-
           <ul>
             <li
               className="flex ai-center"
@@ -137,29 +195,41 @@ const Dashboard = ({ children }) => {
           </ul>
         </Sidebar>
         <Menu>
-          <div className="flex ai-center justify-between">
-            <h2>Welcome, {user.username} 🚀</h2>
-            <Button
-              title={"Logout"}
-              logout
-              onClick={() => {
-                setUser({ username: "", email: "", imageUrl: "" });
-                navigate("/login");
-              }}
-            />
-          </div>
-          {children}
+          <Header className="flex ai-center justify-between">
+            <div>
+              <h2>Welcome, {user.username} 🚀</h2>
+            </div>
+            <div>
+              <LogOut
+                className={"flex ai-center jc-center"}
+                onClick={() => {
+                  setUser({
+                    username: "",
+                    email: "",
+                    imageUrl: "",
+                  });
+                  navigate("/login");
+                }}
+              >
+                <div className="icon">
+                  <CiLogout size={13} />
+                </div>
+                <p>Logout</p>
+              </LogOut>
+            </div>
+          </Header>
+          <Body>{children}</Body>
         </Menu>
-      </Inner>
+      </Container>
     );
   }
+
   return (
-    <Inner>
+    <Container className="flex">
       <Sidebar>
         <div className="center">
           <Avatar />
         </div>
-
         <ul>
           <li className="flex ai-center" onClick={() => navigate("/dashboard")}>
             <div className="icon">
@@ -176,50 +246,78 @@ const Dashboard = ({ children }) => {
         </ul>
       </Sidebar>
       <Menu>
-        <div className="flex ai-center justify-between">
-          <h2>Welcome, {user.username} 🚀</h2>
-          <LogOut
-            className={"flex ai-center jc-center"}
-            onClick={() => {
-              setUser({
-                username: "",
-                email: "",
-                imageUrl: "",
-              });
-              navigate("/login");
-            }}
-          >
-            <div className="icon">
-              <CiLogout size={19} />
+        <Header className="flex ai-center justify-between">
+          <div>
+            <h2>Welcome, {user.username} 🚀</h2>
+          </div>
+          <div>
+            <LogOut
+              className={"flex ai-center jc-center"}
+              onClick={() => {
+                setUser({
+                  username: "",
+                  email: "",
+                  imageUrl: "",
+                });
+                navigate("/login");
+              }}
+            >
+              <div className="icon">
+                <CiLogout size={13} />
+              </div>
+              <p>Logout</p>
+            </LogOut>
+          </div>
+        </Header>
+        <Body>
+          <GridContainer>
+            <div>
+              <Item>
+                <div className="item">
+                  <MdEmail size={20} />
+                  <p>Email</p>
+                </div>
+                <div className="value">{user.email}</div>
+              </Item>
             </div>
-            <p>Logout</p>
-          </LogOut>
-        </div>
-        <GridContainer>
-          <Item>
-            <MdEmail size={20} />
-            <p>Email</p>
-          </Item>
-          <Item>
-            <MdNumbers size={20} />
-            <p>Merchant ID</p>
-          </Item>
-          <Item>
-            <PiMoney size={20} />
-            <p>Current Balance</p>
-          </Item>
-          <Item>
-            <TfiWallet size={20} />
-            <p>Amount Deposited</p>
-          </Item>
-          <Item>
-            <FaPercent size={20} />
-            <p>Percentage Increase</p>
-          </Item>
-        </GridContainer>
+            <Item>
+              <div className="item">
+                <MdNumbers size={20} />
+                <p>Merchant ID</p>
+              </div>
+              <div className="value">{user.merchantId}</div>
+            </Item>
+            <Item>
+              <div className="item">
+                <PiMoney size={20} />
+                <p>Current Balance</p>
+              </div>
+              <div className="value">{user.currentBalance}</div>
+            </Item>
+            <Item>
+              <div className="item">
+                <TfiWallet size={20} />
+                <p>Amount Deposited</p>
+              </div>
+              <div className="value">{user.amountDeposited}</div>
+            </Item>
+            <Item>
+              <div className="item">
+                <FaPercent size={20} />
+                <p>Percentage Increase</p>
+              </div>
+              <div className="value">
+                {calculatePercentageIncrease(
+                  user.currentBalance,
+                  user.amountDeposited
+                )}
+              </div>
+            </Item>
+          </GridContainer>
+        </Body>
       </Menu>
-    </Inner>
+    </Container>
   );
 };
 
-export default Dashboard;
+export default Dashboards;

@@ -5,6 +5,11 @@
   font-family: Roboto !important;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .center {
   display: flex;
   align-items: center;

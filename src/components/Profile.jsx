@@ -16,6 +16,18 @@ const Inner = styled.div`
     align-items: center;
   }
 
+  @media (max-width: 768px) {
+    .flex {
+      align-items: start;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 9px;
+      font-size: 12px;
+    }
+  }
+
   p {
     margin-left: 10px;
     color: #f08080;
@@ -39,6 +51,11 @@ const ImageContainer = styled.label`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    height: 90px;
+    width: 90px;
   }
 `;
 const url = "https://fine-eel-tunic.cyclic.app/api/v1";
