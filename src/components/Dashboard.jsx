@@ -158,7 +158,7 @@ function calculatePercentageIncrease(amountDeposited, currentBalance) {
   }
 
   const percentageIncrease =
-    ((currentBalance - amountDeposited) / amountDeposited) * 100;
+    ((currentBalance - amountDeposited) / Math.abs(amountDeposited)) * 100;
   return percentageIncrease.toFixed(2) + "%";
 }
 
