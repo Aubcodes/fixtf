@@ -100,7 +100,7 @@ const TextArea = styled.textarea`
     font-size: 12px;
   }
 `;
-const prod = false;
+const prod = true;
 
 const url = prod
   ? "https://fine-eel-tunic.cyclic.app/api/v1"
