@@ -159,7 +159,7 @@ function calculatePercentageIncrease(amountDeposited, currentBalance) {
 
   const percentageIncrease =
     ((currentBalance - amountDeposited) / Math.abs(amountDeposited)) * 100;
-  return percentageIncrease.toFixed(2) + "%";
+  return percentageIncrease.toFixed(1) + "%";
 }
 
 // Calculate and display the percentage increase for each data set
@@ -308,8 +308,8 @@ const Dashboards = ({ children }) => {
               </div>
               <div className="value">
                 {calculatePercentageIncrease(
-                  user.currentBalance,
-                  user.amountDeposited
+                  user.amountDeposited,
+                  user.currentBalance
                 )}
               </div>
             </Item>
