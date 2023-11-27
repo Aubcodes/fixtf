@@ -55,6 +55,15 @@ const Header = styled.div`
   margin-top: 30px;
   padding: 20px;
 
+  h2 {
+    display: flex;
+  }
+
+  .name {
+    text-transform: capitalize;
+    margin-left: 8px;
+  }
+
   @media (max-width: 600px) {
     h2 {
       font-size: 20px;
@@ -141,7 +150,7 @@ const Item = styled.div`
   }
 
   .value {
-    font-size: 14px;
+    font-size: 16px;
     margin-top: 5px;
   }
 
@@ -197,7 +206,9 @@ const Dashboards = ({ children }) => {
         <Menu>
           <Header className="flex ai-center justify-between">
             <div>
-              <h2>Welcome, {user.username} 🚀</h2>
+              <h2>
+                Welcome, <p className="name">{user.username}</p> 🚀
+              </h2>
             </div>
             <div>
               <LogOut
@@ -248,7 +259,9 @@ const Dashboards = ({ children }) => {
       <Menu>
         <Header className="flex ai-center justify-between">
           <div>
-            <h2>Welcome, {user.username} 🚀</h2>
+            <h2>
+              Welcome, <p className="name">{user.username}</p> 🚀
+            </h2>
           </div>
           <div>
             <LogOut
