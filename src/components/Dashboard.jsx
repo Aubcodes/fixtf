@@ -151,18 +151,18 @@ const Item = styled.div`
   }
 `;
 
-function calculatePercentageIncrease(originalValue, newValue) {
-  if (originalValue === 0) {
-    // Return 0 percentage increase when the original value is 0
-    return 0;
+// Function to calculate percentage increase
+function calculatePercentageIncrease(amountDeposited, currentBalance) {
+  if (amountDeposited === 0 && currentBalance === 0) {
+    return "0%";
   }
 
-  // Calculate percentage increase
   const percentageIncrease =
-    ((newValue - originalValue) / Math.abs(originalValue)) * 100;
-
-  return percentageIncrease;
+    ((currentBalance - amountDeposited) / amountDeposited) * 100;
+  return percentageIncrease.toFixed(2) + "%";
 }
+
+// Calculate and display the percentage increase for each data set
 
 const Dashboards = ({ children }) => {
   const { user, setUser } = userStore();
