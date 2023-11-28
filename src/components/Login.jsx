@@ -79,6 +79,10 @@ const url = prod
   : "http://localhost:4005/api/v1";
 
 const Login = () => {
+  React.useEffect(() => {
+    document.title = "TFX GROUPS | LOG IN";
+  }, []);
+
   const [email, setEmail] = React.useState("");
   const [clicked, setClicked] = React.useState(false);
   const [emailError, setEmailError] = React.useState("");

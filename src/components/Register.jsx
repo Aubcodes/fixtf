@@ -49,6 +49,9 @@ const Inner = styled.div`
 `;
 
 const Register = () => {
+  React.useEffect(() => {
+    document.title = "TFX GROUPS | SIGN UP";
+  }, []);
   const {
     details: { email, username },
     setDetails,
