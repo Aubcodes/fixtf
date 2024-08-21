@@ -58,7 +58,7 @@ const ImageContainer = styled.label`
     width: 90px;
   }
 `;
-const url = "https://fine-eel-tunic.cyclic.app/api/v1";
+const url = "https://fixtfbe.onrender.com/api/v1";
 
 const Profile = () => {
   const [image, setImage] = React.useState(null);

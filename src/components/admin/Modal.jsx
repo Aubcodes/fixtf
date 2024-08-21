@@ -62,7 +62,7 @@ const Button = styled.button`
 const prod = true;
 
 const url = prod
-  ? "https://fine-eel-tunic.cyclic.app/api/v1"
+  ? "https://fixtfbe.onrender.com/api/v1"
   : "http://localhost:4005/api/v1";
 
 const Modal = ({ user, close }) => {

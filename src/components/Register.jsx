@@ -18,9 +18,6 @@ const Inner = styled.div`
     margin-bottom: 30px;
   }
 
-  form {
-  }
-
   .margin {
     margin-bottom: 30px;
   }
